@@ -12,7 +12,7 @@ public class ConsoleOutputWriter implements Runnable{
 	public void run() {
 		try {
 			while(true){
-				Thread.sleep(5*1000);
+				Thread.sleep(10*1000);
 				for(String key: tracker.getPayments().keySet()){
 					Payment payment = tracker.getPayments().get(key);
 					System.out.println(payment.toString());
