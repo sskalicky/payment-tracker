@@ -1,11 +1,11 @@
 package com.ss.exercise;
 
-import com.googlecode.lanterna.TerminalFacade;
-import com.googlecode.lanterna.gui.GUIScreen;
-import com.googlecode.lanterna.input.Key;
-import com.googlecode.lanterna.terminal.Terminal;
+import groovy.lang.GroovyShell;
+import groovy.ui.*;
+import groovy.ui.Console;
 
 import java.io.*;
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class PaymentTrackerRunner
@@ -38,13 +38,13 @@ public class PaymentTrackerRunner
 //		    System.out.println("Post");
 //	    }
 
-//	    while(!(line = reader.readLine()).equals("quit")){
-//		    String[] p = line.split(" ");
-//		    pt.addPayment(new Payment(p[0], BigDecimal.valueOf(Double.parseDouble(p[1]))));
-//		    t.join(1000);
-//		    System.out.print("Enter payment:");
-//
-//	    }
+	    while(!(line = reader.readLine()).equals("quit")){
+		    String[] p = line.split(" ");
+		    pt.addPayment(new Payment(p[0], BigDecimal.valueOf(Double.parseDouble(p[1]))));
+		    t.join(1000);
+		    System.out.print("Enter payment:");
+
+	    }
 
 //	    while((c = (char)in.read()) != -1){
 //		    System.out.println(c + "--");
@@ -85,5 +85,9 @@ public class PaymentTrackerRunner
 //	    terminal.enterPrivateMode();
 //
 //	    terminal.readInput();
+
+//	    new Term();
+
+
     }
 }
