@@ -4,14 +4,24 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Args {
+	private static final int FIRST_ARG = 0;
 
-	List<String> args;
+	private String inputFilename;
 
 	public Args(String[] args) {
-		this.args = Arrays.asList(args);
+		parseArguments(Arrays.asList(args));
 	}
 
-	public int getArgsCount() {
-		return args.size();
+	private void parseArguments(List<String> args) {
+		if(args.size() == 1){
+			inputFilename = args.get(FIRST_ARG);
+		}
+		if(args.size() > 1){
+			throw new IllegalArgumentException("Illegal number of arguments have been passed (max 1 argument is allowed)");
+		}
+	}
+
+	public String getInputFilename() {
+		return inputFilename;
 	}
 }

@@ -1,10 +1,12 @@
 package com.ss.exercise;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PaymentTracker {
+public class PaymentTracker implements InputChannelObserver{
 	private Map<String, Payment> payments;
+
 
 	public PaymentTracker() {
 		this.payments = new HashMap<>();
@@ -21,5 +23,13 @@ public class PaymentTracker {
 			payments.put(payment.getCurrency(), payment);
 		}
 
+	}
+
+	@Override
+	public void updateFromInputChannel(String input) {
+		//TODO validate
+		//TODO addPayment
+		String[] arr = input.split(" ");
+		addPayment(new Payment(arr[0], new BigDecimal(Integer.parseInt(arr[1]))));
 	}
 }
