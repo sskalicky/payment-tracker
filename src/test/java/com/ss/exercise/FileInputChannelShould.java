@@ -1,5 +1,6 @@
 package com.ss.exercise;
 
+import com.ss.exercise.io.FileInputChannel;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -7,9 +8,13 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
-public class FileInputReaderShould {
+public class FileInputChannelShould {
 
 	@Rule
 	public TemporaryFolder folder = new TemporaryFolder();
@@ -24,15 +29,17 @@ public class FileInputReaderShould {
 		notExistingFileName = "dummy.txt";
 	}
 
-	@Test(expected = FileNotFoundException.class)
-	public void throwAnExceptionWhenFileDoesNotExist() throws FileNotFoundException {
-		FileInputReader fileInputReader = new FileInputReader(notExistingFileName);
+	@Test(expected = NoSuchFileException.class)
+	public void throwAnExceptionWhenFileDoesNotExist() throws IOException {
+		Path file = Paths.get(notExistingFileName);
+		FileInputChannel fileChannel = new FileInputChannel();
+		fileChannel.read(Files.newInputStream(file));
 	}
 
 	@Test
-	public void readMultiLineFile() throws FileNotFoundException {
-		FileInputReader fileInputReader = new FileInputReader(testInputFile.getPath());
-		fileInputReader.readInput();
+	public void readMultiLineFile() throws IOException {
+		FileInputChannel fileInputReader = new FileInputChannel();
+		fileInputReader.read(new FileInputStream(testInputFile));
 	}
 
 	private void buildTestFile() throws IOException {

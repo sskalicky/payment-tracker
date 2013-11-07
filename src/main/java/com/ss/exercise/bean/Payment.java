@@ -1,12 +1,14 @@
-package com.ss.exercise;
-
-import com.sun.istack.internal.NotNull;
+package com.ss.exercise.bean;
 
 import java.math.BigDecimal;
 
 public class Payment {
 	private String currency;
 	private BigDecimal amount;
+
+	public Payment() {
+		this.amount = BigDecimal.ZERO;
+	}
 
 	public Payment(String currency, BigDecimal amount) {
 		this.currency = currency;
@@ -23,6 +25,10 @@ public class Payment {
 
 	public void addAmount(BigDecimal amount) {
 		this.amount = this.amount.add(amount);
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}
 
 	@Override

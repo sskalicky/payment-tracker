@@ -1,5 +1,6 @@
 package com.ss.exercise;
 
+import com.ss.exercise.bean.Payment;
 import org.junit.Before;
 import org.junit.Test;
 

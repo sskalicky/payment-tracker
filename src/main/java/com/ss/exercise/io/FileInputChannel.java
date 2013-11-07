@@ -30,6 +30,8 @@ public class FileInputChannel implements InputChannel{
 
 	@Override
 	public void notifyObserver() {
-		inputObserver.updateFromInputChannel(lineBuffer);
+		if(inputObserver != null){
+			inputObserver.updateFromInputChannel(lineBuffer);
+		}
 	}
 }

@@ -1,6 +1,8 @@
 package com.ss.exercise;
 
-import java.math.BigDecimal;
+import com.ss.exercise.bean.Payment;
+import com.ss.exercise.validator.ValidationException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,9 +29,11 @@ public class PaymentTracker implements InputChannelObserver{
 
 	@Override
 	public void updateFromInputChannel(String input) {
-		//TODO validate
-		//TODO addPayment
-		String[] arr = input.split(" ");
-		addPayment(new Payment(arr[0], new BigDecimal(Integer.parseInt(arr[1]))));
+		PaymentBuilder paymentBuilder = new PaymentFromLineInputBuilder(input);
+		try {
+			addPayment(paymentBuilder.build());
+		} catch (ValidationException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }

@@ -1,7 +1,7 @@
 package com.ss.exercise.io;
 
 
-import com.ss.exercise.Payment;
+import com.ss.exercise.bean.Payment;
 import com.ss.exercise.PaymentTracker;
 
 public class ConsoleOutputWriter implements Runnable{
