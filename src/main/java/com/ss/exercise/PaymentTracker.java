@@ -1,6 +1,8 @@
 package com.ss.exercise;
 
 import com.ss.exercise.bean.Payment;
+import com.ss.exercise.bean.PaymentBuilder;
+import com.ss.exercise.bean.PaymentFromLineInputBuilder;
 import com.ss.exercise.validator.ValidationException;
 
 import java.util.HashMap;

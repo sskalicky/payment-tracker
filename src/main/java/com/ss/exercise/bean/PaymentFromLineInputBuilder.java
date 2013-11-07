@@ -1,6 +1,7 @@
-package com.ss.exercise;
+package com.ss.exercise.bean;
 
 import com.ss.exercise.bean.Payment;
+import com.ss.exercise.bean.PaymentBuilder;
 import com.ss.exercise.validator.LineInputPaymentValidator;
 import com.ss.exercise.bean.PaymentLineInputExtension;
 import com.ss.exercise.validator.PaymentValidator;
@@ -8,7 +9,7 @@ import com.ss.exercise.validator.ValidationException;
 
 import java.math.BigDecimal;
 
-public class PaymentFromLineInputBuilder implements PaymentBuilder{
+public class PaymentFromLineInputBuilder implements PaymentBuilder {
 	private static final String WORD_SEPARATOR = " ";
 	private static final String EMPTY_STRING = "";
 
