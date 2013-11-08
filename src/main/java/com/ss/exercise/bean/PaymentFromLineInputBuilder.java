@@ -13,11 +13,10 @@ public class PaymentFromLineInputBuilder implements PaymentBuilder {
 	private static final String WORD_SEPARATOR = " ";
 	private static final String EMPTY_STRING = "";
 
-	private final PaymentLineInputExtension payment;
+	private PaymentLineInputExtension payment;
 	private String[] lineInput;
 
 	public PaymentFromLineInputBuilder(String lineInput) {
-		this.payment = new PaymentLineInputExtension();
 		this.lineInput = lineInput.split(WORD_SEPARATOR);
 	}
 
@@ -32,7 +31,9 @@ public class PaymentFromLineInputBuilder implements PaymentBuilder {
 	}
 
 	private void buildCurrencyFromLine(){
-		payment.setCurrency((lineInput.length > 0) ? lineInput[0].toUpperCase() : EMPTY_STRING);
+		String currency = (lineInput.length > 0) ? lineInput[0].toUpperCase() : EMPTY_STRING;
+		payment = new PaymentLineInputExtension(currency);
+
 	}
 
 	private void buildAmountParameterFromLine() {

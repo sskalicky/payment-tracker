@@ -3,10 +3,11 @@ package com.ss.exercise.bean;
 import java.math.BigDecimal;
 
 public class Payment {
-	private String currency;
+	private final String currency;
 	private BigDecimal amount;
 
-	public Payment() {
+	public Payment(String currency) {
+		this.currency = currency;
 		this.amount = BigDecimal.ZERO;
 	}
 
@@ -19,16 +20,12 @@ public class Payment {
 		return currency;
 	}
 
-	public BigDecimal getAmount() {
+	public synchronized BigDecimal getAmount() {
 		return amount;
 	}
 
-	public void addAmount(BigDecimal amount) {
+	public synchronized void addAmount(BigDecimal amount) {
 		this.amount = this.amount.add(amount);
-	}
-
-	public void setCurrency(String currency) {
-		this.currency = currency;
 	}
 
 	@Override

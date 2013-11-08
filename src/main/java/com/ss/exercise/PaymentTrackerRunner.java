@@ -3,6 +3,7 @@ package com.ss.exercise;
 import org.apache.log4j.BasicConfigurator;
 
 import java.io.*;
+import java.util.Properties;
 
 public class PaymentTrackerRunner
 {

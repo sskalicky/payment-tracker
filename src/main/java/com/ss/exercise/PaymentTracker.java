@@ -4,19 +4,21 @@ import com.ss.exercise.bean.Payment;
 import com.ss.exercise.bean.PaymentBuilder;
 import com.ss.exercise.bean.PaymentFromLineInputBuilder;
 import com.ss.exercise.validator.ValidationException;
+import org.apache.log4j.Logger;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 public class PaymentTracker implements InputChannelObserver{
-	private Map<String, Payment> payments;
+	static final Logger logger = Logger.getLogger(PaymentTracker.class);
+	private ConcurrentMap<String, Payment> payments;
 
 
 	public PaymentTracker() {
-		this.payments = new HashMap<>();
+		this.payments = new ConcurrentHashMap<>();
 	}
 
-	public Map<String, Payment> getPayments() {
+	public ConcurrentMap<String, Payment> getPayments() {
 		return this.payments;
 	}
 
@@ -24,9 +26,8 @@ public class PaymentTracker implements InputChannelObserver{
 		if(payments.containsKey(payment.getCurrency())){
 			payments.get(payment.getCurrency()).addAmount(payment.getAmount());
 		} else {
-			payments.put(payment.getCurrency(), payment);
+			payments.putIfAbsent(payment.getCurrency(), payment);
 		}
-
 	}
 
 	@Override
@@ -35,7 +36,7 @@ public class PaymentTracker implements InputChannelObserver{
 		try {
 			addPayment(paymentBuilder.build());
 		} catch (ValidationException e) {
-			System.out.println(e.getMessage());
+			logger.warn(e.getMessage());
 		}
 	}
 }

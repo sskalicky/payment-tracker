@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 public class LineInputPaymentValidator extends PaymentValidator{
 	private static final String CURRENCY_SYMBOL_REGEX = "^[A-Z]{3}$";
-	String lineInput;
 	PaymentLineInputExtension payment;
 
 	public LineInputPaymentValidator(PaymentLineInputExtension payment) {
