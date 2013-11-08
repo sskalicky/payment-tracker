@@ -56,7 +56,7 @@ public class PaymentTrackerBuilder {
 	private InputChannel buildAndExecuteConsoleInputChannel(Future outputWriterFuture) {
 		ConsoleInputChannel consoleChannel = new ConsoleInputChannel(System.in, outputWriterFuture);
 		consoleChannel.registerObserver(paymentTracker);
-		executor.submit(consoleChannel);
+		executor.schedule(consoleChannel, 1, SECONDS);
 
 		return consoleChannel;
 	}
